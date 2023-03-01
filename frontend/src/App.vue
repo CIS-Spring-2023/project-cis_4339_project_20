@@ -24,9 +24,21 @@ export default {
           <img class="m-auto" src="@\assets\DanPersona.svg" />
         </section>
         <nav class="mt-10">
-          <ul class="flex flex-col gap-4">
-            <li>
-              <router-link to="/">
+          <ul class="flex flex-col gap-4 navbar-nav">
+            <!------------------>
+            <li class="nav-item">
+              <router-link to="/userlogin" class="nav-link active">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >login</span
+                >
+                Login
+              </router-link>
+            </li>
+            <!------------------>
+            <li class="nav-item">
+              <router-link to="/" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -35,8 +47,8 @@ export default {
                 Dashboard
               </router-link>
             </li>
-            <li>
-              <router-link to="/intakeform">
+            <li class="nav-item">
+              <router-link to="/intakeform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -45,8 +57,8 @@ export default {
                 Client Intake Form
               </router-link>
             </li>
-            <li>
-              <router-link to="/eventform">
+            <li class="nav-item">
+              <router-link to="/eventform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -55,8 +67,8 @@ export default {
                 Create Event
               </router-link>
             </li>
-            <li>
-              <router-link to="/findclient">
+            <li class="nav-item">
+              <router-link to="/findclient" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -65,8 +77,8 @@ export default {
                 Find Client
               </router-link>
             </li>
-            <li>
-              <router-link to="/findevents">
+            <li class="nav-item">
+              <router-link to="/findevents" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -92,7 +104,7 @@ export default {
     </div>
   </main>
 </template>
-<style>
+<style scoped>
 #_container {
   background-color: #c8102e;
   color: white;
