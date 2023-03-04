@@ -1,13 +1,17 @@
 <script>
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
-
+import { useLoggedInUserStore } from "@/store/loggedInUser";
 export default {
   name: 'App',
   data() {
     return {
       orgName: 'Dataplatform'
     }
+  },
+  setup() {
+    const user = useLoggedInUserStore();
+    return { user };
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
@@ -16,6 +20,7 @@ export default {
   }
 }
 </script>
+
 <template>
   <main class="flex flex-row">
     <div id="_container" class="h-screen">
@@ -26,7 +31,7 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4 navbar-nav">
             <!------------------>
-            <li class="nav-item">
+            <li v-if="!user.isLoggedIn" class="nav-item">
               <router-link to="/userlogin" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -36,6 +41,26 @@ export default {
                 Login
               </router-link>
             </li>
+           <!-- Logged In -->
+           <li class="nav-item" v-if="user.isLoggedIn">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarUserMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-fill"></i> Welcome, {{ user.name }}
+            </a>
+            <ul class="dropdown-menu" id="_container" aria-labelledby="navbarUserMenuLink">
+              <li class="nav-item">
+                <a href="" id="_container">
+                  <span @click="store.logout()"><i class="bi bi-box-arrow-left"></i> Logout</span>
+                </a>
+              </li>
+            </ul>
+          </li>
             <!------------------>
             <li class="nav-item">
               <router-link to="/" class="nav-link active">
@@ -47,7 +72,7 @@ export default {
                 Dashboard
               </router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="user.isLoggedIn" class="nav-item">
               <router-link to="/intakeform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -57,7 +82,7 @@ export default {
                 Client Intake Form
               </router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="user.isLoggedIn" class="nav-item">
               <router-link to="/eventform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -67,7 +92,7 @@ export default {
                 Create Event
               </router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="user.isLoggedIn" class="nav-item">
               <router-link to="/findclient" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -77,7 +102,7 @@ export default {
                 Find Client
               </router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="user.isLoggedIn" class="nav-item">
               <router-link to="/findevents" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
