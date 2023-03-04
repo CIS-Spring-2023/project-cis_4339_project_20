@@ -1,7 +1,7 @@
 <script>
 import { DateTime } from 'luxon'
 import axios from 'axios'
-import AttendanceChart from './barChart.vue'
+import AttendanceChart from './pieChart.vue'
 const apiURL = import.meta.env.VITE_ROOT_API
 
 export default {
@@ -25,7 +25,7 @@ export default {
       try {
         this.error = null
         this.loading = true
-        const response = await axios.get(`${apiURL}/events/attendance`)
+        const response = await axios.get(`https://dataplatform-api.azurewebsites.net/events/attendance`)
         this.recentEvents = response.data
         this.labels = response.data.map(
           (item) => `${item.name} (${this.formattedDate(item.date)})`
