@@ -6,8 +6,11 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
-    }
+      orgName: 'Dataplatform',
+      email: '',
+      password: '',
+      error: '',
+  }
   },
   setup() {
     const user = useLoggedInUserStore();
@@ -31,7 +34,7 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4 navbar-nav">
             <!------------------>
-            <li v-if="!user.isLoggedIn" class="nav-item">
+            <li class="nav-item" v-if="!user.isLoggedIn">
               <router-link to="/userlogin" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -72,7 +75,7 @@ export default {
                 Dashboard
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn" class="nav-item">
+            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
               <router-link to="/intakeform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -82,7 +85,7 @@ export default {
                 Client Intake Form
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn" class="nav-item">
+            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
               <router-link to="/eventform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -92,7 +95,7 @@ export default {
                 Create Event
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn" class="nav-item">
+            <li v-if="user.isLoggedIn && (user.role === 'viewer' || user.role === 'editor')" class="nav-item">
               <router-link to="/findclient" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -102,7 +105,7 @@ export default {
                 Find Client
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn" class="nav-item">
+            <li v-if="user.isLoggedIn && (user.role === 'viewer' || user.role === 'editor')" class="nav-item">
               <router-link to="/findevents" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
