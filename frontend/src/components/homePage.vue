@@ -30,7 +30,7 @@ export default {
         const response = await axios.get(`https://dataplatform-api.azurewebsites.net/events/attendance`)
         this.recentEvents = response.data
         this.labels = response.data.map(
-          (item) => `${item.name} (${this.formattedDate(item.date)})`
+          (item) => `${item.name} ${item.address.zip}`
         )
         this.chartData = response.data.map((item) => item.attendees.length)
       } catch (err) {
@@ -106,6 +106,8 @@ export default {
               </tr>
             </tbody>
           </table>
+
+          <!-- Bar Chart -->
           <div>
             <AttendanceChart
               v-if="!loading && !error"
@@ -135,6 +137,7 @@ export default {
             <!-- End of error alert -->
           </div>
 
+          <!-- Pie Chart -->
           <div>
             <AttendancePieChart
               v-if="!loading && !error"

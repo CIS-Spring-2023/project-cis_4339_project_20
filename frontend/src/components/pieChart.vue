@@ -19,13 +19,13 @@ export default {
     await new Chart(this.$refs.attendancePieChart, {
       type: 'pie',  // chart type
       data: {
-        labels: this.label,
+        labels: ['77001', '79567', '33456', '77777', '22387', '77011', '56723'],
         datasets: [
           {
             borderWidth: 1,
             backgroundColor: backgroundColor,
             borderColor: borderColor,
-            data: this.chartData
+            data: [10, 7, 2, 8, 1, 4, 2]
           }
         ]
       },
