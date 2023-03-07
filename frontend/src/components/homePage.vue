@@ -96,7 +96,6 @@ export default {
             </thead>
             <tbody class="divide-y divide-gray-300">
               <tr
-                @click="editEvent(event._id)"
                 v-for="event in recentEvents"
                 :key="event._id"
               >
