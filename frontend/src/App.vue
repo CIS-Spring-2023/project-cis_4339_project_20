@@ -6,7 +6,7 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform',
+      orgName: 'Community Health Workers',
       email: '',
       password: '',
       error: '',
@@ -33,9 +33,9 @@ export default {
         </section>
         <nav class="mt-10">
           <ul class="flex flex-col gap-4 navbar-nav">
-            <!------------------>
+            <!--Login tab-->
             <li class="nav-item" v-if="!user.isLoggedIn">
-              <router-link to="/userlogin" class="nav-link active">
+              <router-link to="/userLogin" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -113,6 +113,17 @@ export default {
                   >search</span
                 >
                 Find Event
+              </router-link>
+            </li>
+            <!--Edit Services tab-->
+            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
+              <router-link to="/editServices" class="nav-link active">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >design_services</span
+                >
+                Edit Services
               </router-link>
             </li>
           </ul>

@@ -44,7 +44,13 @@ const routes = [
     path: '/userlogin',
     name: 'userlogin',
     props: true,
-    component: () => import('../components/userlogin.vue')
+    component: () => import('../components/userLogin.vue')
+  },
+  {
+    path: '/editservices',
+    name: 'editservices',
+    props: true,
+    component: () => import('../components/editServices.vue')
   }
 ]
 const router = createRouter({
