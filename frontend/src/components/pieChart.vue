@@ -34,7 +34,11 @@ export default {
           legend: {
             display: true,
             position: 'bottom'
-          }
+          },
+          title: {
+                display: true,
+                text: 'Clients by Zip Code'
+            }
         },
         responsive: true,
         maintainAspectRatio: true
