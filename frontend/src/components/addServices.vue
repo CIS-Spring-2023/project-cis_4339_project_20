@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-
+<!-- Referenced from https://blog.deepgram.com/build-a-todo-list-with-pinia-and-vue-3/ -->
 <template>
   <div class="row justify-content-center">
     <div class="col-md-6">
