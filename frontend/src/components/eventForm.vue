@@ -140,7 +140,7 @@ export default {
           <div class="flex flex-col grid-cols-3">
             <label>Services Offered at Event</label>
             <!--TEST START-->
-            <!-- Referenced from https://primevue.org/checkbox -->
+            <!-- Referenced from https://primevue.org/checkbox  -->
             <div v-for="item in list.services" :key="item.id">
               <input type="checkbox" 
                 v-model="event.services" 
