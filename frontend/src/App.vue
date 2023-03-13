@@ -9,8 +9,8 @@ export default {
       orgName: 'Community Health Workers',
       email: '',
       password: '',
-      error: '',
-  }
+      error: ''
+    }
   },
   setup() {
     const user = useLoggedInUserStore();
@@ -64,7 +64,7 @@ export default {
               </li>
             </ul>
           </li>
-            <!------------------>
+            <!--- Dashboard --->
             <li class="nav-item">
               <router-link to="/" class="nav-link active">
                 <span
@@ -75,6 +75,7 @@ export default {
                 Dashboard
               </router-link>
             </li>
+            <!--- Client Intake Form --->
             <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
               <router-link to="/intakeform" class="nav-link active">
                 <span
@@ -85,6 +86,7 @@ export default {
                 Client Intake Form
               </router-link>
             </li>
+            <!--- Create Event --->
             <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
               <router-link to="/eventform" class="nav-link active">
                 <span
@@ -95,6 +97,7 @@ export default {
                 Create Event
               </router-link>
             </li>
+            <!--- Find Client --->
             <li v-if="user.isLoggedIn && (user.role === 'viewer' || user.role === 'editor')" class="nav-item">
               <router-link to="/findclient" class="nav-link active">
                 <span
@@ -105,6 +108,7 @@ export default {
                 Find Client
               </router-link>
             </li>
+            <!--- Find Event --->
             <li v-if="user.isLoggedIn && (user.role === 'viewer' || user.role === 'editor')" class="nav-item">
               <router-link to="/findevents" class="nav-link active">
                 <span
@@ -115,7 +119,7 @@ export default {
                 Find Event
               </router-link>
             </li>
-            <!--Edit Services tab-->
+            <!--Add Services tab-->
             <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
               <router-link to="/addServices" class="nav-link active">
                 <span
@@ -148,5 +152,8 @@ export default {
   background-color: #c8102e;
   color: white;
   padding: 18px;
+}
+nav {
+  margin: 0 auto;  /* added so extended navigation will display */
 }
 </style>

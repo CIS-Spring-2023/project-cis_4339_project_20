@@ -4,19 +4,24 @@ export const useServiceList = defineStore({
     id: 'list',
     state: () => ({
         services: [
-            {newService: 'Family Support', id: 0},
-            {newService: 'Adult Education', id: 0},
-            {newService: 'Youth Services Program', id: 0},
-            {newService: 'Early  Childhood Education', id: 0},
-            {newService: 'Random Stuff', id: 0},
+            { name: 'Family Support', active: true, id: 0 },
+            { name: 'Adult Education', active: false, id: 1 },
+            { name: 'Youth Services Program', active: true, id: 2 },
+            { name: 'Early Childhood Education', active: false, id: 3 },
+            { name: 'Random Stuff', active: true, id: 4 },
         ],
         id: 10,
     }),
-    
+
     actions: {
         addService(newService) {
-            this.services.push({newService, id: this.id++});
+            this.services.push({ name: newService, active: true, id: this.id++ });
         },
     },
-   
-})
+
+    getters: {
+        activeServices() {
+            return this.services.filter(service => service.active);
+        },
+    },
+});

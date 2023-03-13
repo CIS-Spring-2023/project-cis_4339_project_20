@@ -15,12 +15,17 @@ export default {
       newService.value = "";
     }
 
-    return {
-      list,
-      newService,
-      addService
-    };
-  }
+function toggleActive(service) {
+  list.setActive(service.id, service.active)
+}
+
+return {
+  list,
+  newService,
+  addService,
+  toggleActive,
+}
+},
 }
 </script>
 
@@ -29,8 +34,8 @@ export default {
   <div class="row justify-content-center">
     <div class="col-md-6">
     <h3 class="text-center"> Current List of Services </h3>
-      <div v-for="item in list.services" class="text-center">
-            {{ item.newService }}
+      <div v-for="item in list.activeServices" class="text-center">
+        {{ item.name }} - Active
       </div>
     <hr class="solid">
       <h3 class="text-center mt-4"> Enter a service to add it to the list</h3>
