@@ -26,12 +26,12 @@ export default {
 
 <template>
   <main class="flex flex-row">
-    <div id="_container" class="h-screen">
+    <div style="background-color: #c8102e;" class="h-screen">
       <header class="w-full">
         <section class="text-center">
           <img class="m-auto" src="@\assets\DanPersona.svg" />
         </section>
-        <nav class="mt-10 w-full">
+        <nav class="mt-10 w-full" id="_container">
           <ul class="flex flex-col gap-4 navbar-nav">
             <!--Login tab-->
             <li class="nav-item" v-if="!user.isLoggedIn">
@@ -163,8 +163,5 @@ export default {
   background-color: #c8102e;
   color: white;
   padding: 18px;
-}
-nav {
-  margin: 0 auto;  /* added so extended navigation will display */
 }
 </style>
