@@ -14,16 +14,10 @@ export default {
       list.addService(item);
       newService.value = "";
     }
-
-function toggleActive(service) {
-  list.setActive(service.id, service.active)
-}
-
-return {
+    return {
   list,
   newService,
-  addService,
-  toggleActive,
+  addService
 }
 },
 }
@@ -33,6 +27,11 @@ return {
 <template>
   <div class="row justify-content-center">
     <div class="col-md-6">
+      <h1
+        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
+      >
+      Add Service
+      </h1>
     <h3 class="text-center"> Current List of Services </h3>
       <div v-for="item in list.activeServices" class="text-center">
         {{ item.name }} - Active

@@ -31,7 +31,7 @@ export default {
         <section class="text-center">
           <img class="m-auto" src="@\assets\DanPersona.svg" />
         </section>
-        <nav class="mt-10">
+        <nav class="mt-10 w-full">
           <ul class="flex flex-col gap-4 navbar-nav">
             <!--Login tab-->
             <li class="nav-item" v-if="!user.isLoggedIn">
@@ -128,6 +128,17 @@ export default {
                   >design_services</span
                 >
                 Add Services
+              </router-link>
+            </li>
+            <!--Edit Services tab-->
+            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
+              <router-link to="/editServices" class="nav-link active">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >design_services</span
+                >
+                Edit Services
               </router-link>
             </li>
           </ul>
