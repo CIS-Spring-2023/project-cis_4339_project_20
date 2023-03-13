@@ -138,7 +138,7 @@ export default {
           <div></div>
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
-            <label>Services Offered at Event</label>
+            <label>Services Offered at Event:</label>
             <!--NEW CODE START-->
             <!-- Referenced from https://primevue.org/checkbox -->
             <div v-for="item in list.services" :key="item.id">
@@ -150,7 +150,7 @@ export default {
                 class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                 notchecked
               />
-              <label :for="item.id"> {{ item.newService }} </label>
+              <label :for="item.id"> {{ item.name }} </label>
             </div>
             <!--NEW CODE END-->
 
