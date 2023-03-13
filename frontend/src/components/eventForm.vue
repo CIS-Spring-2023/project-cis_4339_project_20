@@ -2,11 +2,13 @@
 import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import axios from 'axios'
+import { useServiceList } from "../store/services.js"
 const apiURL = import.meta.env.VITE_ROOT_API
 
 export default {
   setup() {
-    return { v$: useVuelidate({ $autoDirty: true }) }
+    const list = useServiceList();
+    return { v$: useVuelidate({ $autoDirty: true }), list }
   },
   data() {
     return {
@@ -63,6 +65,7 @@ export default {
       >
         Create New Event
       </h1>
+
     </div>
     <div class="px-10 py-20">
       <!-- @submit.prevent stops the submit event from reloading the page-->
@@ -136,6 +139,20 @@ export default {
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
             <label>Services Offered at Event</label>
+            <!--TEST START-->
+            <!-- Referenced from https://primevue.org/checkbox -->
+            <div v-for="item in list.services" :key="item.id">
+              <input type="checkbox" 
+                v-model="event.services" 
+                :inputId="item.id" 
+                name="service" 
+                :value="item" 
+                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+                notchecked
+              />
+              <label :for="item.id"> {{ item }} </label>
+            </div>
+            <!--TEST END-->
             <div>
               <label for="familySupport" class="inline-flex items-center">
                 <input

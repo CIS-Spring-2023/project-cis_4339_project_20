@@ -117,13 +117,13 @@ export default {
             </li>
             <!--Edit Services tab-->
             <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
-              <router-link to="/editServices" class="nav-link active">
+              <router-link to="/addServices" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
                   >design_services</span
                 >
-                Edit Services
+                Add Services
               </router-link>
             </li>
           </ul>

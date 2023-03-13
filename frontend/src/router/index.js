@@ -47,10 +47,10 @@ const routes = [
     component: () => import('../components/userLogin.vue')
   },
   {
-    path: '/editservices',
-    name: 'editservices',
+    path: '/addservices',
+    name: 'addservices',
     props: true,
-    component: () => import('../components/editServices.vue')
+    component: () => import('../components/addServices.vue')
   }
 ]
 const router = createRouter({
