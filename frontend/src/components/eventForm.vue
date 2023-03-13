@@ -139,8 +139,8 @@ export default {
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
             <label>Services Offered at Event</label>
-            <!--TEST START-->
-            <!-- Referenced from https://primevue.org/checkbox  -->
+            <!--NEW CODE START-->
+            <!-- Referenced from https://primevue.org/checkbox -->
             <div v-for="item in list.services" :key="item.id">
               <input type="checkbox" 
                 v-model="event.services" 
@@ -150,9 +150,11 @@ export default {
                 class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                 notchecked
               />
-              <label :for="item.id"> {{ item }} </label>
+              <label :for="item.id"> {{ item.newService }} </label>
             </div>
-            <!--TEST END-->
+            <!--NEW CODE END-->
+
+            <!-- OLD CODE START (COMMENTED OUT)
             <div>
               <label for="familySupport" class="inline-flex items-center">
                 <input
@@ -205,6 +207,7 @@ export default {
                 <span class="ml-2">Early Childhood Education</span>
               </label>
             </div>
+          OLD CODE END -->
           </div>
         </div>
 
