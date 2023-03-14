@@ -138,19 +138,21 @@ export default {
           <div></div>
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
-            <label>Services Offered at Event:</label>
+            <label><b>Services Offered at Event:</b></label>
             <!--NEW CODE START-->
             <!-- Referenced from https://primevue.org/checkbox -->
             <div v-for="item in list.services" :key="item.id">
+              <div v-if="item.active">
               <input type="checkbox" 
                 v-model="event.services" 
                 :inputId="item.id" 
                 name="service" 
-                :value="item" 
+                :value="item.name" 
                 class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
                 notchecked
               />
               <label :for="item.id"> {{ item.name }} </label>
+              </div>
             </div>
             <!--NEW CODE END-->
 
