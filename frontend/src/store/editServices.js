@@ -14,12 +14,6 @@ export const useServiceList = defineStore({
     }),
 
     actions: {
-        editServiceid(id, newName) {
-          const service = this.services[id];
-          if (service) {
-            service.name = newName;
-          }
-        },
         editService(name, newName) {
             const service = this.services.find((service) => service.name === name);
             if (service) {
