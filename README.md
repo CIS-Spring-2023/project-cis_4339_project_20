@@ -37,5 +37,5 @@ The client intake form will take the personal and address details of a client an
 
 Similar functionality should be used for the Create Event and Find Event pages. The information can be retrieved using specific criteria that is required when the user inputs the information into the form. 
 
-On the add services page, you can add a new service. It will automatically show up as an active service. 
-For the Edit Services page, by entering a service's title it can be edited to something else entirely. And below that a list of active and inactive services will be generated which can be updated with the activate and deactivate buttons. These buttons will update the service list that can be added to as well. 
+We implemented CRUD functionality by utiliziaing the add and edit services page. On the add services page, you can create a new service. It will automatically show up as an active service. 
+For the Edit Services page, we made sure we could update and utilize soft deletion for the services. An example of this could be that by entering a service's title it can be edited to something else entirely. And below that a list of active and inactive services will be generated which can be updated with the activate and deactivate buttons. These buttons will update the service list that can be added to as well. 
