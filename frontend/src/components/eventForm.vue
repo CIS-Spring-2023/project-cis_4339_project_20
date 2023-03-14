@@ -156,60 +156,6 @@ export default {
             </div>
             <!--NEW CODE END-->
 
-            <!-- OLD CODE START (COMMENTED OUT)
-            <div>
-              <label for="familySupport" class="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  id="familySupport"
-                  value="Family Support"
-                  v-model="event.services"
-                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-                  notchecked
-                />
-                <span class="ml-2">Family Support</span>
-              </label>
-            </div>
-            <div>
-              <label for="adultEducation" class="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  id="adultEducation"
-                  value="Adult Education"
-                  v-model="event.services"
-                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-                  notchecked
-                />
-                <span class="ml-2">Adult Education</span>
-              </label>
-            </div>
-            <div>
-              <label for="youthServices" class="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  id="youthServices"
-                  value="Youth Services Program"
-                  v-model="event.services"
-                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-                  notchecked
-                />
-                <span class="ml-2">Youth Services Program</span>
-              </label>
-            </div>
-            <div>
-              <label for="childhoodEducation" class="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  id="childhoodEducation"
-                  value="Early Childhood Education"
-                  v-model="event.services"
-                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-                  notchecked
-                />
-                <span class="ml-2">Early Childhood Education</span>
-              </label>
-            </div>
-          OLD CODE END -->
           </div>
         </div>
 

@@ -56,13 +56,12 @@ export default {
 <!-- Referenced from https://blog.deepgram.com/build-a-todo-list-with-pinia-and-vue-3/ -->
 <template>
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1
-        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
-      >
-      Edit Service
+    <div class="col-md-6 border-end border-danger">
+      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">
+      Edit Services
       </h1>
-    <h3 class="text-center"> Current List of Services </h3>
+      <br>
+    <h2 class="text-center"> Current List of Services: </h2>
       <!-- looping through services filtered by activeServices only -->
       <div v-for="item in list.activeServices" class="text-center">
         {{ item.name }} - Active
@@ -70,38 +69,43 @@ export default {
     <hr class="solid">
       <h3 class="text-center mt-4"> Enter name of service to edit:</h3>
       <form @submit.prevent="() => editService(editServiceName)">
-        <div class="form-group text-center">
+        <div class="form-group text-center m-2">
           <input type="text" class="mb-2 form-control text-center" v-model="editServiceName">
           <button class="btn btn-primary btn-block">Edit</button>
         </div>
-      </form>
-      <hr class="solid">
-      <!-- Adding deletion-->
-      <div>
-    <h1
-        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
-      >
-      Delete Service
+      </form> 
+    </div>
+
+
+    <!-- Adding soft deletion -->
+    <div class="col-md-6 border-start border-danger">
+    <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">
+      Activate/Deactivate Services
       </h1>
-    <ul>
-      <li v-for="service in activeServices" :key="service.id">
-        {{ service.name }}
-        <button @click="deactivateService(service.id)">Deactivate</button>
-      </li>
-    </ul>
+      <br>
+      <h2 class="text-center">Active Services:</h2>
+      <div class="container col-md-7">
+        <ul class="list-group">
+          <li v-for="service in activeServices" :key="service.id" class="text-left list-group-item">
+            {{ service.name }}
+              <button @click="deactivateService(service.id)" class="btn btn-secondary btn-block float-right">Deactivate</button>
+          </li>
+        </ul>
+      </div>
     <hr>
-    <h2>Inactive Services</h2>
-    <ul>
-      <li v-for="service in inactiveServices" :key="service.id">
-        {{ service.name }}
-        <button @click="activateService(service.id)">Activate</button>
-      </li>
-    </ul>
-  </div>
+    <h2 class="text-center">Inactive Services:</h2>
+    <div class="container col-md-7">
+        <ul class="list-group">
+          <li v-for="service in inactiveServices" :key="service.id" class="text-left list-group-item">
+            {{ service.name }}
+            <button @click="activateService(service.id)" class="btn btn-success btn-block float-right">Activate</button>
+          </li>
+        </ul>
+    </div>
     </div>
   </div>
-
 </template>
+<!-- CSS help referenced from https://getbootstrap.com/docs/4.0/components/list-group/ -->
 
 
 
