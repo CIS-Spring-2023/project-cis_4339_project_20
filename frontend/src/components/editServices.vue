@@ -1,22 +1,56 @@
+<script>
+import { ref } from 'vue'
+import { useServiceList } from "../store/editServices.js";
+
+export default {
+  setup() {
+    const newService = ref("");
+    const list = useServiceList();
+    const editServiceName = ref(""); // define editServiceName here
+    
+    function editService(name) {
+      const service = list.services.find(service => service.name === name && service.active);
+      if (service) {
+        const newName = prompt('Enter a new service name:', service.name);
+        if (newName && newName.length > 0) {
+          service.name = newName;
+        }
+  } else {
+    alert(`Service '${name}' not found or not active`);
+  }
+}
+
+    return {
+      list,
+      newService,
+      editService,
+      editServiceName,
+    }
+  },
+}
+</script>
+
+<!-- Referenced from https://blog.deepgram.com/build-a-todo-list-with-pinia-and-vue-3/ -->
 <template>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
       Edit Service
       </h1>
-  <div>
-    {{ item }}
+    <h3 class="text-center"> Current List of Services </h3>
+      <div v-for="item in list.activeServices" class="text-center">
+        {{ item.name }} - Active
+      </div>
+    <hr class="solid">
+      <h3 class="text-center mt-4"> Enter name of service to edit</h3>
+      <form @submit.prevent="() => editService(editServiceName)">
+        <div class="form-group text-center">
+          <input type="text" class="mb-2 form-control text-center" v-model="editServiceName">
+          <button class="btn btn-primary btn-block">Edit</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
-
-
-<script>
-export default {
-data() {
-  return {
-    item: "Work In Progress"
-
-}
-}
-}
-</script>
