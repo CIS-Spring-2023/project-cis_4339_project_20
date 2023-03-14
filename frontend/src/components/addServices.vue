@@ -37,6 +37,7 @@ export default {
     <h3 class="text-center"> Current List of Services: </h3>
       <div class="text-center">
         <!-- looping through services filtered by activeServices only -->
+        <!-- Referenced from https://getbootstrap.com/docs/5.0/components/list-group/ -->
         <ul class="list-group list-group-flush"  v-for="item in list.activeServices">
           <li class="list-group-item"> {{ item.name }} - Active </li>
         </ul>
