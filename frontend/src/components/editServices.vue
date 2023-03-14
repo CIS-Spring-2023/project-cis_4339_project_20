@@ -28,8 +28,29 @@ export default {
       editService,
       editServiceName,
     }
+    
   },
+
+  computed: {
+    activeServices() {
+      return this.list.services.filter(service => service.active)
+    },
+    inactiveServices() {
+      return this.list.services.filter(service => !service.active)
+    }
+  },
+  methods: {
+    activateService(id) {
+      const service = this.list.services.find(service => service.id === id)
+      service.active = true
+    },
+    deactivateService(id) {
+      const service = this.list.services.find(service => service.id === id)
+      service.active = false
+    }
+  }
 }
+
 </script>
 
 <!-- Referenced from https://blog.deepgram.com/build-a-todo-list-with-pinia-and-vue-3/ -->
@@ -54,6 +75,34 @@ export default {
           <button class="btn btn-primary btn-block">Edit</button>
         </div>
       </form>
+      <hr class="solid">
+      <!-- Adding deletion-->
+      <div>
+    <h1
+        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
+      >
+      Delete Service
+      </h1>
+    <ul>
+      <li v-for="service in activeServices" :key="service.id">
+        {{ service.name }}
+        <button @click="deactivateService(service.id)">Deactivate</button>
+      </li>
+    </ul>
+    <hr>
+    <h2>Inactive Services</h2>
+    <ul>
+      <li v-for="service in inactiveServices" :key="service.id">
+        {{ service.name }}
+        <button @click="activateService(service.id)">Activate</button>
+      </li>
+    </ul>
+  </div>
     </div>
   </div>
+
 </template>
+
+
+
+
