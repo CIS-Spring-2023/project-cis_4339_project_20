@@ -12,16 +12,19 @@ export const useServiceList = defineStore({
         ],
         NextId: 10,
     }),
+    // The state services array contains all current services in this Pinia store. 
 
     actions: {
-        editService(name, newName) {
+    // The editService action performs the action of replacing a service in the services array with a new name.
+        editService(name, newName) {  
             const service = this.services.find((service) => service.name === name);
             if (service) {
               service.name = newName;
             }
           },
         },
-    
+        
+    // activeServices filters the services array to only return services considered 'active' 
       getters: {
         activeServices() {
           return this.services.filter(service => service.active);

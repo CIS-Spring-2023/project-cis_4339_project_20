@@ -21,7 +21,7 @@ export const useServiceList = defineStore({
         },
     },
     // The addService action performs the action of adding a service to the services array.
-
+    // activeServices filters the services array to only return services considered 'active' 
     getters: {
         activeServices() {
             return this.services.filter(service => service.active);

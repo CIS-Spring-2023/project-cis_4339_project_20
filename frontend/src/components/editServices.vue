@@ -6,8 +6,10 @@ export default {
   setup() {
     const newService = ref("");
     const list = useServiceList();
-    const editServiceName = ref(""); // define editServiceName here
+    const editServiceName = ref(""); 
     
+// editService will try to find the 'name' of service & if active
+// if found and active, prompt displays name change or if service not found
     function editService(name) {
       const service = list.services.find(service => service.name === name && service.active);
       if (service) {
@@ -40,11 +42,12 @@ export default {
       Edit Service
       </h1>
     <h3 class="text-center"> Current List of Services </h3>
+      <!-- looping through services filtered by activeServices only -->
       <div v-for="item in list.activeServices" class="text-center">
         {{ item.name }} - Active
       </div>
     <hr class="solid">
-      <h3 class="text-center mt-4"> Enter name of service to edit</h3>
+      <h3 class="text-center mt-4"> Enter name of service to edit:</h3>
       <form @submit.prevent="() => editService(editServiceName)">
         <div class="form-group text-center">
           <input type="text" class="mb-2 form-control text-center" v-model="editServiceName">

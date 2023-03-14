@@ -8,7 +8,8 @@ export default {
 
     const newService = ref("");
     const list = useServiceList();
-    
+
+// addService adds a new service to services list if the item is not an empty string 
     function addService(item) {
       if (item.length === 0) {return};
       list.addService(item);
@@ -35,6 +36,7 @@ export default {
       <br>
     <h3 class="text-center"> Current List of Services: </h3>
       <div class="text-center">
+        <!-- looping through services filtered by activeServices only -->
         <ul class="list-group list-group-flush"  v-for="item in list.activeServices">
           <li class="list-group-item"> {{ item.name }} - Active </li>
         </ul>
