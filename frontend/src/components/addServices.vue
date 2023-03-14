@@ -34,8 +34,8 @@ export default {
       </h1>
       <br>
     <h3 class="text-center"> Current List of Services: </h3>
-      <div v-for="item in list.activeServices" class="text-center">
-        <ul class="list-group list-group-flush">
+      <div class="text-center">
+        <ul class="list-group list-group-flush"  v-for="item in list.activeServices">
           <li class="list-group-item"> {{ item.name }} - Active </li>
         </ul>
       </div>
