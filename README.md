@@ -27,7 +27,7 @@ Follow instructions in frontend README for setup and running as a local instance
 
 username = "cis" and password = "editor" or "viewer" depending on the view you would like to use.
 
-If you are logged in as a user, you can view the dashboard. The dashboard displays the events, their dates and the number of attendees. If you scroll down, there will be a bar chart and pie chart dispaying clients by zip code. 
+If you are logged in as a user, you can view the dashboard. The dashboard displays the events, their dates and the number of attendees. If you scroll down, there will be a bar chart that will connect to the api to display the events and their attendess. A pie chart can be found below it dispaying clients by zip code. 
 As a viewer, in the navigation pile. you will also have the option to find a client and find an event. At the top where the user is welcomed, you can also logout of that account.
 
 If you are logged in as an editor, it opens the path to far more options. 
