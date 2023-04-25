@@ -9,6 +9,10 @@ const orgDataSchema = new Schema(
       type: String,
       required: true
     },
+    orgid: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true

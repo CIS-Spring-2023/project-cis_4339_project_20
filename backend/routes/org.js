@@ -12,7 +12,8 @@ router.get('/', (req, res, next) => {
     if (error) {
       return next(error)
     } else {
-      res.json(data)
+      res.json(data),
+      console.log(data)
     }
   })
 })

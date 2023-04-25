@@ -13,7 +13,8 @@ router.get('/', (req, res, next) => {
       if (error) {
         return next(error)
       } else {
-        return res.json(data)
+        return res.json(data),
+        console.log(data)
       }
     })
     .sort({ updatedAt: -1 })
