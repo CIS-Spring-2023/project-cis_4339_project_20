@@ -37,11 +37,8 @@ app.use(morgan('dev'))
 app.use('/clients', require('./routes/clients'))
 app.use('/events', require('./routes/events'))
 app.use('/org', require('./routes/org'))
-<<<<<<< HEAD
-app.use('/services', require('./routes/services'))
-=======
 app.use('/users', require('./routes/users'))
->>>>>>> 170de14902969f61aca63ee20f94fa34bd22766a
+app.use('/services', require('./routes/services'))
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
