@@ -141,6 +141,11 @@ const serviceDataSchema = new Schema(
       type: String,
       required: true
     },
+    orgs: {
+      type: [{ type: String, ref: 'org' }],
+      required: true,
+      validate: [(org) => org.length > 0, 'needs at least one org']
+    }
   },
   {
     collection: 'services'
