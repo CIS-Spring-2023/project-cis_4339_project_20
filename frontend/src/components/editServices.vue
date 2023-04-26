@@ -10,7 +10,7 @@ export default {
     
 // editService will try to find the 'name' of service & if active
 // if found and active, prompt displays name change or if service not found
-    function editService(name) {
+  function editService(name) {
       const service = list.services.find(service => service.name === name && service.active);
       if (service) {
         const newName = prompt('Enter a new service name:', service.name);
@@ -68,7 +68,7 @@ export default {
       </div>
     <hr class="solid">
       <h3 class="text-center mt-4"> Enter name of service to edit:</h3>
-      <form @submit.prevent="() => editService(editServiceName)">
+      <form @submit.prevent="() => editService(editServiceName.split(/[ ,]+/))">
         <div class="form-group text-center m-2">
           <input type="text" class="mb-2 form-control text-center" v-model="editServiceName">
           <button class="btn btn-primary btn-block">Edit</button>

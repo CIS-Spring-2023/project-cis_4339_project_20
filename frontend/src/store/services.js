@@ -1,30 +1,32 @@
 import { defineStore } from 'pinia'
+import axios from 'axios'
+
+const apiURL = import.meta.env.VITE_ROOT_API
 
 export const useServiceList = defineStore({
     id: 'list',
     state: () => ({
-        services: [
-            { name: 'Family Support', active: true, id: 0 },
-            { name: 'Adult Education', active: false, id: 1 },
-            { name: 'Youth Services Program', active: true, id: 2 },
-            { name: 'Early Childhood Education', active: false, id: 3 },
-            { name: 'Test 1', active: true, id: 4 },
-        ],
-        id: 10,
+        services: [],
+        id: 0,
     }),
-    // The state services array contains all current services in this Pinia store. 
-    // There are some hard coded in for testing purposes but services state should be dynamic.
 
     actions: {
-        addService(newService) {
-            this.services.push({ name: newService, active: true, id: this.id++ });
+        async fetchServices() {
+            const response = await axios.get(`${apiURL}/services`) 
+            this.services = response.data;
+          },
+        async addService(newService) {
+            const response = await axios.post(`${apiURL}/services`, {
+                name: newService,
+                active: true,
+                id: this.id++,
+            })
+            this.services.push(response.data);
         },
     },
-    // The addService action performs the action of adding a service to the services array.
-    // activeServices filters the services array to only return services considered 'active' 
-    getters: {
-        activeServices() {
-            return this.services.filter(service => service.active);
-        },
-    },
+    //getters: {
+        //activeServices() {
+            //return this.services.filter(service => service.active);
+        //},
+    //},
 });
