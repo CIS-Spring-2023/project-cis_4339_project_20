@@ -41,7 +41,7 @@ export default {
                   class="material-icons"
                   >login</span
                 >
-                Login
+                Log in
               </router-link>
             </li>
            <!-- Logged In -->
@@ -59,7 +59,7 @@ export default {
             <ul class="dropdown-menu" id="_container" aria-labelledby="navbarUserMenuLink">
               <li class="nav-item">
                 <a href="" id="_container">
-                  <span @click="store.logout()"><i class="bi bi-box-arrow-left"></i> Logout</span>
+                  <span @click="store.logout()"><i class="bi bi-box-arrow-left"></i> Log out</span>
                 </a>
               </li>
             </ul>

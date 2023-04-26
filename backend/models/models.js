@@ -1,6 +1,8 @@
 const uuid = require('uuid')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+// bcrypt for password hashing
+const bcrypt = require('bcrypt-nodejs')
 
 // collection for org
 const orgDataSchema = new Schema(
@@ -169,6 +171,17 @@ const userSchema = new Schema(
     collection: 'users'
   }
 )
+
+// hash the password using bcrypt hashSync
+userSchema.methods.generateHash = function(password) {
+  console.log(password)
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+};
+
+// checking if password is valid with bcrypt.compareSync
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 
 // create models from mongoose schemas

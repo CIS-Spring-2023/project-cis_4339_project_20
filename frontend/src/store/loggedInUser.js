@@ -1,4 +1,7 @@
 import { defineStore } from 'pinia'
+import axios from 'axios'
+const apiURL = import.meta.env.VITE_ROOT_API
+
 
 //defining a store
 export const useLoggedInUserStore = defineStore({
@@ -7,6 +10,7 @@ export const useLoggedInUserStore = defineStore({
   //central part of the store
   state: () => {
     return {
+      users: [],
       name: "",
       isLoggedIn: false,
       role: "viewer",
@@ -33,9 +37,30 @@ export const useLoggedInUserStore = defineStore({
         isLoggedIn: false,
         role: "viewer",
       });
+    },
+    async fetchUsername() {
+      try {
+        const data = await axios.get(`${apiURL}/clients`)
+        this.users = data.data
+        console.log("user here:", users)
+      }
+      catch (error) {
+        console.log(error)
+      }
     }
   }
 });
+
+
+// ATTEMPT at hashing password for validation
+/* function validation() {
+  username = ''
+  password = ''
+  axios.post(`${apiURL}/users`).then(()) => {
+    this.username = this.username
+    this.password = this.password
+  }
+} */
 
 // login function based on roles
 function apiLogin(u, p) {
