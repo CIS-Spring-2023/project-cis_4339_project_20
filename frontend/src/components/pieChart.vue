@@ -1,5 +1,7 @@
 <script>
 import { Chart, registerables } from 'chart.js'
+import axios from 'axios'
+const apiURL = import.meta.env.VITE_ROOT_API
 Chart.register(...registerables)
 
 export default {
@@ -12,6 +14,9 @@ export default {
     }
   },
   async mounted() {
+    const response = await axios.get(`${apiURL}/clients`)  //connecting to atlas API
+    const clients = response.data 
+    const zipCodes = clients.map(client => client.address.zip) // getting only the zipcodes
     const backgroundColor = this.chartData.map(() => this.getColor())
     const borderColor = backgroundColor.map((e) =>
       e.replace(/[\d\.]+\)$/g, '1)')
@@ -19,13 +24,13 @@ export default {
     await new Chart(this.$refs.attendancePieChart, {
       type: 'pie',  // chart type
       data: {
-        labels: ['77001', '79567', '33456', '77777', '22387', '77011', '56723'],
+        labels: zipCodes,
         datasets: [
           {
             borderWidth: 1,
             backgroundColor: backgroundColor,
             borderColor: borderColor,
-            data: [10, 7, 2, 8, 1, 4, 2]
+            data: zipCodes.map(zip => zipCodes.filter(z => z === zip).length)
           }
         ]
       },
