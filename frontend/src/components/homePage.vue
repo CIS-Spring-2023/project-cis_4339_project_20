@@ -27,7 +27,7 @@ export default {
       try {
         this.error = null
         this.loading = true
-        const response = await axios.get(`https://dataplatform-api.azurewebsites.net/events/attendance`)
+        const response = await axios.get(`${apiURL}/events`)
         this.recentEvents = response.data
         this.labels = response.data.map(
           (item) => `${item.name} ${item.address.zip}`

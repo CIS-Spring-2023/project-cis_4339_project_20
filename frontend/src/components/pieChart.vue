@@ -22,7 +22,7 @@ export default {
       e.replace(/[\d\.]+\)$/g, '1)')
     )
     await new Chart(this.$refs.attendancePieChart, {
-      type: 'pie',  // chart type
+      type: 'doughnut',  // chart type
       data: {
         labels: zipCodes,
         datasets: [
