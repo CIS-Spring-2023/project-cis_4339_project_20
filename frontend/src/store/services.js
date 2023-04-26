@@ -11,7 +11,7 @@ export const useServiceList = defineStore({
     }),
 
     actions: {
-        async fetchServices() {
+        async GetServices() {
             const response = await axios.get(`${apiURL}/services`) 
             this.services = response.data;
           },
@@ -21,6 +21,7 @@ export const useServiceList = defineStore({
                 active: true,
                 id: this.id++,
             })
+            console.log(response.data);
             this.services.push(response.data);
         },
     },

@@ -1,5 +1,6 @@
 <script>
 import { ref } from 'vue'
+import { onMounted } from 'vue';
 import { useServiceList } from "../store/services.js";
 
 export default {
@@ -10,17 +11,22 @@ export default {
     const list = useServiceList();
 
 // addService adds a new service to services list if the item is not an empty string 
-    function addService(item) {
+function addService(item) {
       if (item.length === 0) {return};
       list.addService(item);
       newService.value = "";
     }
+// get all services from db
+    onMounted(() => {
+      list.GetServices();
+    });
+
     return {
-  list,
-  newService,
-  addService
-}
-},
+      list,
+      newService,
+      addService
+    }
+  },
 }
 </script>
 
@@ -38,8 +44,10 @@ export default {
       <div class="text-center">
         <!-- looping through services filtered by activeServices only -->
         <!-- Referenced from https://getbootstrap.com/docs/5.0/components/list-group/ -->
-        <ul class="list-group list-group-flush"  v-for="item in list.activeServices">
-          <li class="list-group-item"> {{ item.name }} - Active </li>
+        <ul class="list-group list-group-flush"> <!-- v-for="item in list.activeServices" -->
+          <li class="list-group-item" v-for="service in list.services" :key="service.id">
+            {{ service.name }} - {{ service.active ? 'Active' : 'Inactive' }}
+          </li>
         </ul>
       </div>
     <hr class="solid">

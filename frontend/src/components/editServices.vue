@@ -106,7 +106,3 @@ export default {
   </div>
 </template>
 <!-- CSS help referenced from https://getbootstrap.com/docs/4.0/components/list-group/ -->
-
-
-
-

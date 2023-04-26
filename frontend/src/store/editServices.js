@@ -12,8 +12,8 @@ export const useServiceList = defineStore({
     // The state services array contains all current services in this Pinia store. 
 
     actions: {
-      async fetchServices() {
-        const response = await axios.get(`${apiURL}/services`);
+      async GetServices() {
+        const response = await axios.get(`${apiURL}/services`)
         this.services = response.data;
       },
     // The editService action performs the action of replacing a service in the services array with a new name.
