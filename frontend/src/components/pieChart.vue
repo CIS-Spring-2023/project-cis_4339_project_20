@@ -17,6 +17,7 @@ export default {
     const response = await axios.get(`${apiURL}/clients`)  //connecting to atlas API
     const clients = response.data 
     const zipCodes = clients.map(client => client.address.zip) // getting only the zipcodes
+    const zipLegend = new Set(zipCodes) // to not include duplicate lengends per zip
     const backgroundColor = this.chartData.map(() => this.getColor())
     const borderColor = backgroundColor.map((e) =>
       e.replace(/[\d\.]+\)$/g, '1)')
@@ -24,13 +25,14 @@ export default {
     await new Chart(this.$refs.attendancePieChart, {
       type: 'doughnut',  // chart type
       data: {
-        labels: zipCodes,
+        // source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+        labels: Array.from(zipLegend),    
         datasets: [
           {
             borderWidth: 1,
             backgroundColor: backgroundColor,
             borderColor: borderColor,
-            data: zipCodes.map(zip => zipCodes.filter(z => z === zip).length)
+            data: Array.from(zipLegend).map(zip => zipCodes.filter(z => z === zip).length)
           }
         ]
       },
