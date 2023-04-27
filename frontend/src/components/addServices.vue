@@ -12,13 +12,13 @@ export default {
 
 // addService adds a new service to services list if the item is not an empty string 
 function addService(item) {
-      if (item.length === 0) {return};
-      list.addService(item);
-      newService.value = "";
+      if (item.length === 0) {return}
+      list.addService(item)
+      newService.value = ""
     }
 // get all services from db
     onMounted(() => {
-      list.GetServices();
+      list.GetServices()
     });
 
     return {
@@ -44,7 +44,7 @@ function addService(item) {
       <div class="text-center">
         <!-- looping through services filtered by activeServices only -->
         <!-- Referenced from https://getbootstrap.com/docs/5.0/components/list-group/ -->
-        <ul class="list-group list-group-flush"> <!-- v-for="item in list.activeServices" -->
+        <ul class="list-group list-group-flush">
           <li class="list-group-item" v-for="service in list.services" :key="service.id">
             {{ service.name }} - {{ service.active ? 'Active' : 'Inactive' }}
           </li>

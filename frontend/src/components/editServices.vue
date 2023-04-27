@@ -40,15 +40,15 @@ export default {
     }
   },
   methods: {
-    activateService(id) {
-      const service = this.list.services.find(service => service.id === id)
-      service.active = true
-    },
-    deactivateService(id) {
-      const service = this.list.services.find(service => service.id === id)
-      service.active = false
-    }
+  activateService(index) {
+    const service = this.list.services[index];
+    service.active = true;
+  },
+  deactivateService(index) {
+    const service = this.list.services[index];
+    service.active = false;
   }
+}
 }
 
 </script>
@@ -68,7 +68,7 @@ export default {
       </div>
     <hr class="solid">
       <h3 class="text-center mt-4"> Enter name of service to edit:</h3>
-      <form @submit.prevent="() => editService(editServiceName.split(/[ ,]+/))">
+      <form @submit.prevent="() => editService(editServiceName)">
         <div class="form-group text-center m-2">
           <input type="text" class="mb-2 form-control text-center" v-model="editServiceName">
           <button class="btn btn-primary btn-block">Edit</button>
@@ -86,9 +86,9 @@ export default {
       <h2 class="text-center">Active Services:</h2>
       <div class="container col-md-7">
         <ul class="list-group">
-          <li v-for="service in activeServices" :key="service.id" class="text-left list-group-item">
+          <li v-for="(service, index) in activeServices" :key="service.id" class="text-left list-group-item">
             {{ service.name }}
-              <button @click="deactivateService(service.id)" class="btn btn-secondary btn-block float-right">Deactivate</button>
+              <button @click="deactivateService(index)" class="btn btn-secondary btn-block float-right">Deactivate</button>
           </li>
         </ul>
       </div>
@@ -96,9 +96,9 @@ export default {
     <h2 class="text-center">Inactive Services:</h2>
     <div class="container col-md-7">
         <ul class="list-group">
-          <li v-for="service in inactiveServices" :key="service.id" class="text-left list-group-item">
+          <li v-for="(service, index) in inactiveServices" :key="service.id" class="text-left list-group-item">
             {{ service.name }}
-            <button @click="activateService(service.id)" class="btn btn-success btn-block float-right">Activate</button>
+            <button @click="activateService(index)" class="btn btn-success btn-block float-right">Activate</button>
           </li>
         </ul>
     </div>

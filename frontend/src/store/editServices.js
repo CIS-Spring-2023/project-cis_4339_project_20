@@ -10,7 +10,6 @@ export const useServiceList = defineStore({
         id: 0,
     }),
     // The state services array contains all current services in this Pinia store. 
-
     actions: {
       async GetServices() {
         const response = await axios.get(`${apiURL}/services`)
@@ -27,7 +26,8 @@ export const useServiceList = defineStore({
             this.services.splice(index, 1, updatedService);
           }
         },
-      },       
+      },    
+         
     // activeServices filters the services array to only return services considered 'active' 
       getters: {
         activeServices() {

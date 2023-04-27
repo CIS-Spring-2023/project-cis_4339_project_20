@@ -13,7 +13,7 @@ export const useServiceList = defineStore({
     actions: {
         async GetServices() {
             const response = await axios.get(`${apiURL}/services`) 
-            this.services = response.data;
+            this.services = response.data
           },
         async addService(newService) {
             const response = await axios.post(`${apiURL}/services`, {
@@ -21,8 +21,8 @@ export const useServiceList = defineStore({
                 active: true,
                 id: this.id++,
             })
-            console.log(response.data);
-            this.services.push(response.data);
+            console.log(response.data)
+            this.services.push(response.data)
         },
     },
     //getters: {
