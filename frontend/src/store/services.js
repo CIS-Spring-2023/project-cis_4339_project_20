@@ -18,16 +18,16 @@ export const useServiceList = defineStore({
         async addService(newService) {
             const response = await axios.post(`${apiURL}/services`, {
                 name: newService,
+                org: '1',
                 active: true,
-                id: this.id++,
             })
             console.log(response.data)
             this.services.push(response.data)
         },
     },
-    //getters: {
-        //activeServices() {
-            //return this.services.filter(service => service.active);
-        //},
-    //},
+    getters: {
+        activeServices() {
+            return this.services.filter(service => service.active);
+        },
+    },
 });

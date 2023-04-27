@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-const apiURL = import.meta.env.VITE_ROOT_API;
+const apiURL = import.meta.env.VITE_ROOT_API
 
 export const useServiceList = defineStore({
     id: 'list',

@@ -1,5 +1,6 @@
 <script>
 import { ref } from 'vue'
+import { onMounted } from 'vue';
 import { useServiceList } from "../store/editServices.js";
 
 export default {
@@ -21,7 +22,9 @@ export default {
     alert(`Service '${name}' not found or not active`);
   }
 }
-
+    onMounted(() => {
+          list.GetServices()
+        });
     return {
       list,
       newService,

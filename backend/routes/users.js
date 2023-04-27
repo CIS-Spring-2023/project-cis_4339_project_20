@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 // ATTEMPT at hashing password with for validation
 
   // GET users TEST with hashing
-  /* app.post('/', function(req, res) {
+/*   app.post('/', function(req, res) {
     var new_user = new User({
       username: req.body.username
     });
@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
     new_user.save();
   }); */
 
-/*   router.post('/', function(req, res) {
+  router.post('/', function(req, res) {
     users.findOne({username: req.body.username}, function(err, user) {
   
       if (!user.validPassword(req.body.password)) {
@@ -39,6 +39,6 @@ router.get('/', (req, res, next) => {
         res.send("user and pass good")
       }
     });
-  }); */
+  });
 
   module.exports = router

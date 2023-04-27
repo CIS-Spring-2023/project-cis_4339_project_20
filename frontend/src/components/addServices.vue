@@ -2,14 +2,11 @@
 import { ref } from 'vue'
 import { onMounted } from 'vue';
 import { useServiceList } from "../store/services.js";
-
 export default {
   
   setup() {
-
     const newService = ref("");
     const list = useServiceList();
-
 // addService adds a new service to services list if the item is not an empty string 
 function addService(item) {
       if (item.length === 0) {return}
@@ -20,7 +17,6 @@ function addService(item) {
     onMounted(() => {
       list.GetServices()
     });
-
     return {
       list,
       newService,
