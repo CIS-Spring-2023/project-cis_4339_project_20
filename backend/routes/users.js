@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcrypt');
 
 // importing data model schemas
 const { users } = require('../models/models')
@@ -29,16 +30,28 @@ router.get('/', (req, res, next) => {
     new_user.save();
   }); */
 
-  router.post('/', function(req, res) {
-    users.findOne({username: req.body.username}, function(err, user) {
+  router.post('/', async function(req, res) {
   
-      if (!user.validPassword(req.body.password)) {
-        console.log("user and pass bad")
-        return next(error)
-      } else {
-        res.send("user and pass good")
-      }
-    });
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log(req.body)
+    // const salt = await bcrypt.genSalt(10)
+    // const hashedPassword = await bcrypt.hash(password, salt)
+
+    // const user = await users.create({username: username, password: hashedPassword})
+    // await user.save()
+
+    // res.send(user)
+    // usernames : editor,viewer, password: Test
+    const savedUser = await users.findOne({username: req.body.username});
+  
+    const valid = await bcrypt.compare(password, savedUser.password);
+    if (valid){
+      res.json({username: savedUser.username, _id: savedUser._id})
+      return
+    }
+
+    res.status(400).send("incorrect password")
   });
 
   module.exports = router

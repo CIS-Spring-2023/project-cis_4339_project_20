@@ -10,7 +10,7 @@ export const useLoggedInUserStore = defineStore({
   //central part of the store
   state: () => {
     return {
-      users: [],
+      user: { id: "", name: "" },
       name: "",
       isLoggedIn: false,
       role: "viewer",
@@ -18,25 +18,28 @@ export const useLoggedInUserStore = defineStore({
   },
   // login 
   actions: {
-    async login(username, password, role) {
-      try {
-        const response = await apiLogin(username, password, role);
-        this.$patch({
-          isLoggedIn: response.isAllowed,
-          name: response.name,
-          role: response.role,
-        });
+    async login(username, password) {
+      console.log("clicked")
+
+      const response = await axios.post(`${apiURL}/users`, {
+        username: username, password: password
+      });
+
+      this.user.name = response.data.username;
+      this.user.id = response.data._id
+
+      if (response.status == 200) {
+        console.log("logged in successfully");
+
         this.$router.push("/");
-      } catch (error) {
-        console.log(error);
+        return
       }
+      console.log('Login failed');
+
     },
     logout() {
-      this.patch({
-        name: "",
-        isLoggedIn: false,
-        role: "viewer",
-      });
+   this.user.name = ''
+   this.user.id=''
     },
     async fetchUsername() {
       try {
@@ -63,10 +66,10 @@ export const useLoggedInUserStore = defineStore({
 } */
 
 // login function based on roles
-function apiLogin(u, p) {
-  if (u === "cis" && p === "editor") return Promise.resolve({ isAllowed: true, name: "Editor", role: "editor" });
-  if (p === "editor") return Promise.resolve({ isAllowed: false });
-  if (u === "cis" && p === "viewer") return Promise.resolve({ isAllowed: true, name: "Viewer", role: "viewer" });
-  if (p === "viewer") return Promise.resolve({ isAllowed: false });
-  return Promise.reject(new Error("invalid credentials"));
-}
+// function apiLogin(u, p) {
+//   if (u === "cis" && p === "editor") return Promise.resolve({ isAllowed: true, name: "Editor", role: "editor" });
+//   if (p === "editor") return Promise.resolve({ isAllowed: false });
+//   if (u === "cis" && p === "viewer") return Promise.resolve({ isAllowed: true, name: "Viewer", role: "viewer" });
+//   if (p === "viewer") return Promise.resolve({ isAllowed: false });
+//   return Promise.reject(new Error("invalid credentials"));
+// }

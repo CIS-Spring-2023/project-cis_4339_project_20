@@ -13,8 +13,8 @@ export default {
     }
   },
   setup() {
-    const user = useLoggedInUserStore();
-    return { user };
+    const store = useLoggedInUserStore();
+    return { store };
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
@@ -34,36 +34,24 @@ export default {
         <nav class="mt-10 w-full" id="_container">
           <ul class="flex flex-col gap-4 navbar-nav">
             <!--Login tab-->
-            <li class="nav-item" v-if="!user.isLoggedIn">
-              <router-link to="/userLogin" class="nav-link active">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >login</span
-                >
-                Log in
-              </router-link>
-            </li>
+           
            <!-- Logged In -->
-           <li class="nav-item" v-if="user.isLoggedIn">
+           <li class="nav-item" >
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link "
               href="#"
               id="navbarUserMenuLink"
               role="button"
-              data-bs-toggle="dropdown"
+           
               aria-expanded="false"
             >
-              <i class="bi bi-person-fill"></i> Welcome, {{ user.name }}
+              <i class="bi bi-person-fill"></i> Welcome, {{ user?.name }}
             </a>
-            <ul class="dropdown-menu" id="_container" aria-labelledby="navbarUserMenuLink">
-              <li class="nav-item">
-                <a href="" id="_container">
-                  <span @click="store.logout()"><i class="bi bi-box-arrow-left"></i> Log out</span>
-                </a>
-              </li>
-            </ul>
+            
+        
           </li>
+          
+          
             <!--- Dashboard --->
             <li class="nav-item">
               <router-link to="/" class="nav-link active">
@@ -76,7 +64,7 @@ export default {
               </router-link>
             </li>
             <!--- Client Intake Form --->
-            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
+            <li v-if="store.user.name == 'editor'" class="nav-item">
               <router-link to="/intakeform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -87,7 +75,7 @@ export default {
               </router-link>
             </li>
             <!--- Create Event --->
-            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
+            <li v-if="store.user.name == 'editor'" class="nav-item">
               <router-link to="/eventform" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -98,7 +86,7 @@ export default {
               </router-link>
             </li>
             <!--- Find Client --->
-            <li v-if="user.isLoggedIn && (user.role === 'viewer' || user.role === 'editor')" class="nav-item">
+            <li v-if="store.user.name == 'editor' || store.user.name == 'viewer'" class="nav-item">
               <router-link to="/findclient" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -109,7 +97,7 @@ export default {
               </router-link>
             </li>
             <!--- Find Event --->
-            <li v-if="user.isLoggedIn && (user.role === 'viewer' || user.role === 'editor')" class="nav-item">
+            <li v-if="store.user.name == 'editor' || store.user.name == 'viewer'" class="nav-item">
               <router-link to="/findevents" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -120,7 +108,7 @@ export default {
               </router-link>
             </li>
             <!--Add Services tab-->
-            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
+            <li v-if="store.user.name == 'editor'" class="nav-item">
               <router-link to="/addServices" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -131,7 +119,7 @@ export default {
               </router-link>
             </li>
             <!--Edit Services tab-->
-            <li v-if="user.isLoggedIn && user.role === 'editor'" class="nav-item">
+            <li v-if="store.user.name == 'editor'" class="nav-item">
               <router-link to="/editServices" class="nav-link active">
                 <span
                   style="position: relative; top: 6px"
@@ -139,6 +127,21 @@ export default {
                   >design_services</span
                 >
                 Edit Services
+              </router-link>
+            </li>
+            <li class="nav-item" v-if="store.user.name!=''">
+                <a href="" id="_container" >
+                  <span @click="store.logout()"><i class="bi bi-box-arrow-left"></i> Log out</span>
+                </a>
+              </li>
+              <li class="nav-item" v-if="store.user.name==''">
+              <router-link to="/userLogin" class="nav-link active">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >login</span
+                >
+                Log in
               </router-link>
             </li>
           </ul>
