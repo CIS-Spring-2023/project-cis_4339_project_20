@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { onMounted } from 'vue';
 import { useServiceList } from "../store/editServices.js";
-
 export default {
   setup() {
     const newService = ref("");
@@ -33,7 +32,6 @@ export default {
     }
     
   },
-
   computed: {
     activeServices() {
       return this.list.services.filter(service => service.active)
@@ -53,7 +51,6 @@ export default {
   }
 }
 }
-
 </script>
 
 <!-- Referenced from https://blog.deepgram.com/build-a-todo-list-with-pinia-and-vue-3/ -->

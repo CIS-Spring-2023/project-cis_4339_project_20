@@ -149,8 +149,7 @@ const serviceDataSchema = new Schema(
       validate: [(org) => org.length > 0, 'needs at least one org']
     },
     active: {
-      type: Boolean,
-      default: true
+      type: Boolean
     }
   },
   {

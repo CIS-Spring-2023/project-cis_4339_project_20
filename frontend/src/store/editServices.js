@@ -34,4 +34,4 @@ export const useServiceList = defineStore({
           return this.services.filter(service => service.active);
         },
       },
-    });
+    })
