@@ -16,18 +16,21 @@ export const useServiceList = defineStore({
         this.services = response.data;
       },
     // The editService action performs the action of replacing a service in the services array with a new name.
-      async editService(name, newName) {  
-          const response = await axios.patch(`${apiURL}/services/${name}`, {
-            name: newName,
-          });
-          const updatedService = response.data;
-          const index = this.services.findIndex(service => service.name === name);
+    async editService(name, newName) {  
+      const service = this.services.find(service => service.name === name);
+      if (!service) {
+          return;
+      }
+      const updatedService = { ...service, name: newName };
+      const response = await axios.put(`${apiURL}/services/${name}`, updatedService);
+      if (response.status === 200) {
+          const index = this.services.indexOf(service);
           if (index !== -1) {
-            this.services.splice(index, 1, updatedService);
+              this.services.splice(index, 1, updatedService);
           }
-        },
-      },    
-         
+      }
+  },  
+},         
     // activeServices filters the services array to only return services considered 'active' 
       getters: {
         activeServices() {

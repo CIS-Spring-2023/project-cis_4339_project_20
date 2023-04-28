@@ -17,34 +17,18 @@ router.get('/', (req, res, next) => {
     })
   })
   
-
-// ATTEMPT at hashing password with for validation
-
-  // GET users TEST with hashing
-/*   app.post('/', function(req, res) {
-    var new_user = new User({
-      username: req.body.username
-    });
-  
-    new_user.password = new_user.generateHash(req.body.password);
-    new_user.save();
-  }); */
-
+//Posting credentials 
   router.post('/', async function(req, res) {
   
+   // Requesting the body as a response
     const username = req.body.username;
     const password = req.body.password;
     console.log(req.body)
-    // const salt = await bcrypt.genSalt(10)
-    // const hashedPassword = await bcrypt.hash(password, salt)
-
-    // const user = await users.create({username: username, password: hashedPassword})
-    // await user.save()
-
-    // res.send(user)
-    // usernames : editor,viewer, password: Test
+ 
+    // crdentials to log in --- usernames : editor,viewer, password: Test ( case sensitive)
     const savedUser = await users.findOne({username: req.body.username});
   
+    // validating credentials
     const valid = await bcrypt.compare(password, savedUser.password);
     if (valid){
       res.json({username: savedUser.username, _id: savedUser._id})
