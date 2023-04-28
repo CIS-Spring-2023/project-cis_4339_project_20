@@ -53,8 +53,3 @@ export const useLoggedInUserStore = defineStore({
     }
   }
 });
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 14ebd5a55234fa4e18e55464346545e29f2fe294
