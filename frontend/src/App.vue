@@ -45,7 +45,7 @@ export default {
            
               aria-expanded="false"
             >
-              <i class="bi bi-person-fill"></i> Welcome, {{ user?.name }}
+              <i class="bi bi-person-fill"></i> Welcome, {{ store.user.name }}
             </a>
             
         
