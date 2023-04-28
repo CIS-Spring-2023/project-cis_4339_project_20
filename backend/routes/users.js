@@ -18,24 +18,24 @@ router.get('/', (req, res, next) => {
   })
   
 //Posting credentials 
-  router.post('/', async function(req, res) {
-  
-   // Requesting the body as a response
-    const username = req.body.username;
-    const password = req.body.password;
-    console.log(req.body)
- 
-    // crdentials to log in --- usernames : editor,viewer, password: Test ( case sensitive)
-    const savedUser = await users.findOne({username: req.body.username});
-  
-    // validating credentials
-    const valid = await bcrypt.compare(password, savedUser.password);
-    if (valid){
-      res.json({username: savedUser.username, _id: savedUser._id})
-      return
-    }
+router.post('/', async function(req, res) {
 
-    res.status(400).send("incorrect password")
-  });
+  // Requesting the body as a response
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log(req.body)
 
-  module.exports = router
+  // crdentials to log in --- usernames : editor,viewer, password: Test ( case sensitive)
+  const savedUser = await users.findOne({username: req.body.username});
+
+  // validating credentials
+  const valid = await bcrypt.compare(password, savedUser.password);
+  if (valid){
+    res.json({username: savedUser.username, _id: savedUser._id})
+    return
+  }
+
+  res.status(400).send("incorrect password")
+});
+
+module.exports = router
