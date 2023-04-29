@@ -16,7 +16,18 @@ router.get('/', (req, res, next) => {
       }
     })
   })
-  
+
+// PUT update user
+router.put('/:id', (req, res, next) => {
+  users.findByIdAndUpdate(req.params.id, req.body, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
 //Posting credentials 
 router.post('/', async function(req, res) {
 
@@ -37,5 +48,30 @@ router.post('/', async function(req, res) {
 
   res.status(400).send("incorrect password")
 });
+
+// hard DELETE client by ID
+router.delete('/:id', (req, res, next) => {
+  users.findByIdAndDelete(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else if (!data) {
+      res.status(400).send('Client not found')
+    } else {
+      res.send('Client deleted')
+    }
+  })
+})
+
+// POST new user
+router.post('/', (req, res, next) => {
+  const newClient = req.body
+  clients.create(newClient, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
 
 module.exports = router
