@@ -13,6 +13,7 @@ This project uses MongoDB, Express.js, VueJS, and NodeJS.
 cd backend
 ```
 Follow instructions in backend README for setup and running as a local instance.
+Note: The API documentation is located in the backend readme file.
 
 ## Frontend Vue 3 Application
 ```
