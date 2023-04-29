@@ -34,10 +34,10 @@ router.post('/', (req, res, next) => {
     })
   })
 
-  // Add put service
 
-  router.put('/', (req, res, next) => {
-    services.findOneAndUpdate(req.params.name, req.body, (error, data) => {
+  // Add PUT service
+  router.put('/:id', (req, res, next) => {
+    services.findByIdAndUpdate(req.params.id, req.body, (error, data) => {
       if (error) {
         return next(error)
       } else {
@@ -45,4 +45,5 @@ router.post('/', (req, res, next) => {
       }
     })
   })
+
 module.exports = router

@@ -23,7 +23,8 @@ VITE_ROOT_API is the URL for the backend API, either on localhost or in the clou
 
 ## Login information for the application:
 
-username = "cis" and password = "editor" or "viewer" depending on the view you would like to use.
+username = "editor" and password = "Test" (capital 'T') for the editor account.
+username = "viewer" and password = "Test" (capital 'T') for the editor account.
 
 If you are logged in as a user, you can view the dashboard. The dashboard displays the events, their dates and the number of attendees. If you scroll down, there will be a bar chart that will connect to the api to display the events and their attendess. A pie chart can be found below it dispaying clients by zip code. 
 As a viewer, in the navigation pile. you will also have the option to find a client and find an event. At the top where the user is welcomed, you can also logout of that account.
