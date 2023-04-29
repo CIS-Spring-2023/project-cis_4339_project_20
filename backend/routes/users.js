@@ -62,16 +62,5 @@ router.delete('/:id', (req, res, next) => {
   })
 })
 
-// POST new user
-router.post('/', (req, res, next) => {
-  const newClient = req.body
-  clients.create(newClient, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
-  })
-})
 
 module.exports = router
