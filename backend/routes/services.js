@@ -46,4 +46,30 @@ router.post('/', (req, res, next) => {
     })
   })
 
+// POST new service
+router.post('/', (req, res, next) => {
+  const newService = req.body
+  newService.orgs = [org]
+  clients.create(newClient, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  })
+})
+
+// hard DELETE service by ID
+router.delete('/:id', (req, res, next) => {
+  services.findByIdAndDelete(req.params.id, (error, data) => {
+    if (error) {
+      return next(error)
+    } else if (!data) {
+      res.status(400).send('Service not found')
+    } else {
+      res.send('Service deleted')
+    }
+  })
+})
+
 module.exports = router
