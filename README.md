@@ -6,7 +6,7 @@ The current iteration is based on development done by Karen Castillo, Farwa Hasa
 
 Requirements:
 
-This project uses NodeJS and MongoDB.
+This project uses MongoDB, Express.js, VueJS, and NodeJS.
 
 ## Backend Node Application
 ```
